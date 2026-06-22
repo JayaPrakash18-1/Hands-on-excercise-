@@ -1,0 +1,78 @@
+Time Complexity Analysis of Inventory Operations
+
+The inventory management system uses a HashMap<Integer, Product>, where the Product ID acts as the key and the Product object acts as the value.
+
+Operation	        HashMap Method	Average Time Complexity
+Add Product	           put()	            O(1)
+Retrieve Product	   get()	            O(1)
+Update Product	       get()+field update	O(1)
+Delete Product	       remove()	            O(1)
+Display All Products   Iteration	        O(n)
+
+When a new product is added:
+
+list.put(product.getProductId(), product);
+The hash value of the product ID is calculated.
+The product is placed into the corresponding bucket.
+
+Update Operation
+Product p = list.get(id);
+p.setPrice(price);
+p.setQuantity(quantity);
+
+Steps:
+
+Locate the product using get(id).
+Modify the required fields.
+
+Delete Operation
+list.remove(id);
+HashMap computes the hash of the key.
+Finds the bucket.
+Removes the entry.
+
+
+Use HashMap for Fast Retrieval
+
+Instead of:
+
+ArrayList<Product>
+
+which requires O(n) search,
+
+use:
+
+HashMap<Integer, Product>
+
+which provides O(1) average-time lookup.
+
+This is the primary optimization in the inventory system.
+
+
+
+2. Use Unique Product IDs
+
+Each product should have a unique ID.
+
+list.put(productId, product);
+
+Unique keys reduce collisions and improve retrieval performance.
+
+3. Minimize Hash Collisions
+
+A good hash distribution ensures products are spread across buckets.
+
+For integer IDs:
+
+1, 2, 3, 4, 5...
+
+HashMap already performs efficiently.
+
+
+
+
+The inventory system uses a HashMap, making add, retrieve, update,
+and delete operations O(1) on average, which is highly efficient
+for large inventories. The main optimization is direct access
+through product IDs rather than sequential searching, allowing 
+the system to scale effectively as the number of products increases.

@@ -1,0 +1,3 @@
+package FactoryMethodPatternExample;
+
+public interface Document {}

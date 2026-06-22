@@ -1,0 +1,101 @@
+Factory Pattern (Ready to Paste in Notepad)
+
+The Factory Pattern is a creational design pattern that provides an interface for creating objects while allowing the factory to decide which concrete class to instantiate. It encapsulates object creation logic in a separate factory class, so clients do not need to know the details of object instantiation.
+
+Example: Vehicle Manufacturing Application
+
+1. Define the Vehicle Interface
+
+```java
+public interface Vehicle {
+    void drive();
+}
+```
+
+2. Implement Concrete Vehicle Classes
+
+```java
+public class Car implements Vehicle {
+    public void drive() {
+        System.out.println("Driving a car...");
+    }
+}
+```
+
+```java
+public class Motorcycle implements Vehicle {
+    public void drive() {
+        System.out.println("Driving a motorcycle...");
+    }
+}
+```
+
+3. Create a Vehicle Factory
+
+```java
+public class VehicleFactory {
+
+    public Vehicle createVehicle(String type) {
+
+        if (type.equalsIgnoreCase("car")) {
+            return new Car();
+        } else if (type.equalsIgnoreCase("motorcycle")) {
+            return new Motorcycle();
+        }
+
+        // Default vehicle if type is unknown
+        return new Car();
+    }
+}
+```
+
+4. Client Usage
+
+```java
+public class Main {
+    public static void main(String[] args) {
+
+        VehicleFactory factory = new VehicleFactory();
+
+        Vehicle car = factory.createVehicle("car");
+        car.drive();
+
+        Vehicle motorcycle = factory.createVehicle("motorcycle");
+        motorcycle.drive();
+    }
+}
+```
+
+Output:
+
+```text
+Driving a car...
+Driving a motorcycle...
+```
+
+Explanation:
+
+* The Vehicle interface defines a common contract for all vehicle types.
+* Car and Motorcycle are concrete implementations of the Vehicle interface.
+* VehicleFactory contains the object creation logic.
+* The client requests a vehicle from the factory instead of creating objects directly using the new keyword.
+* The factory decides which object to create based on the input type.
+
+Advantages of Factory Pattern:
+
+1. Encapsulates object creation logic.
+2. Promotes loose coupling between client and implementation classes.
+3. Makes code easier to maintain and extend.
+4. Simplifies object creation when it involves complex logic.
+5. Supports scalability by allowing new product types to be added with minimal changes.
+
+Use Cases:
+
+* When object creation is complex.
+* When multiple implementations of an interface exist.
+* When the client should not know the exact class being instantiated.
+* When creating objects requires configuration or setup.
+
+Conclusion:
+
+The Factory Pattern centralizes object creation in a factory class and provides a common interface for creating objects. This improves flexibility, maintainability, and extensibility by separating object creation from object usage.

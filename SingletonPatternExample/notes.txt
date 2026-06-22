@@ -1,0 +1,249 @@
+JAVA SINGLETON PATTERN - QUICK NOTES
+
+1. WHAT IS SINGLETON?
+
+* Ensures only one object of a class exists.
+* Provides a global access point to that object.
+
+Uses:
+
+* Logger
+* Database Connection
+* Cache Manager
+* Configuration Manager
+* Thread Pool
+
+---
+
+2. EAGER INITIALIZATION
+
+class Singleton {
+private static final Singleton INSTANCE = new Singleton();
+
+```
+private Singleton(){}
+
+public static Singleton getInstance() {
+    return INSTANCE;
+}
+```
+
+}
+
+Pros:
+
+* Thread-safe
+* Simple implementation
+
+Cons:
+
+* Object created even if never used
+
+---
+
+3. LAZY INITIALIZATION
+
+class Singleton {
+private static Singleton instance;
+
+```
+public static Singleton getInstance() {
+    if(instance == null)
+        instance = new Singleton();
+
+    return instance;
+}
+```
+
+}
+
+Pros:
+
+* Object created only when needed
+
+Cons:
+
+* Not thread-safe
+
+---
+
+4. SYNCHRONIZED ACCESSOR
+
+public static synchronized Singleton getInstance() {
+if(instance == null)
+instance = new Singleton();
+
+```
+return instance;
+```
+
+}
+
+Pros:
+
+* Thread-safe
+
+Cons:
+
+* Lock acquired on every call
+* Performance overhead
+
+---
+
+5. DOUBLE-CHECKED LOCKING
+
+private static volatile Singleton instance;
+
+public static Singleton getInstance() {
+
+```
+if(instance == null) {
+
+    synchronized (Singleton.class) {
+
+        if(instance == null) {
+            instance = new Singleton();
+        }
+    }
+}
+
+return instance;
+```
+
+}
+
+Pros:
+
+* Thread-safe
+* Better performance than synchronized method
+
+---
+
+6. BILL PUGH SINGLETON (RECOMMENDED)
+
+class Singleton {
+
+```
+private Singleton(){}
+
+private static class Holder {
+    private static final Singleton INSTANCE =
+            new Singleton();
+}
+
+public static Singleton getInstance() {
+    return Holder.INSTANCE;
+}
+```
+
+}
+
+Advantages:
+
+* Lazy Initialization
+* Thread-safe
+* No synchronization overhead
+* Most preferred implementation
+
+Key Idea:
+
+* Nested class loads only when first used.
+* JVM guarantees thread-safe class initialization.
+
+---
+
+7. SYNCHRONIZATION NOTES
+
+Class-level Lock:
+
+synchronized (Singleton.class) {
+// critical section
+}
+
+Meaning:
+
+* Locks Singleton.class object.
+* Only one thread can execute this block at a time.
+
+---
+
+Static Synchronized Method:
+
+public static synchronized void method() {}
+
+Equivalent to:
+
+synchronized (Singleton.class) {
+// method body
+}
+
+---
+
+Instance Synchronized Method:
+
+public synchronized void method() {}
+
+Equivalent to:
+
+synchronized (this) {
+// method body
+}
+
+Locks current object only.
+
+---
+
+8. STATIC MEMBERS
+
+Static Block:
+
+static {
+System.out.println("Loaded");
+}
+
+* Runs automatically when class initializes.
+
+---
+
+Static Method:
+
+static void display(){}
+
+* Does NOT run automatically.
+* Runs only when called.
+
+---
+
+9. OBJECTS VS STATIC MEMBERS
+
+Shared by all objects:
+
+* Static Variables
+* Static Methods
+
+Not Shared:
+
+* Instance Variables
+
+Example:
+
+Employee e1 = new Employee();
+Employee e2 = new Employee();
+
+Both e1 and e2 share the same static members.
+
+---
+
+INTERVIEW ANSWER
+
+Best Singleton Implementation?
+
+Answer:
+Bill Pugh Singleton
+
+Reason:
+
+* Lazy Loading
+* Thread Safe
+* No Synchronization Cost
+* Uses JVM Class Loading Mechanism

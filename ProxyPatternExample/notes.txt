@@ -1,0 +1,41 @@
+PROXY DESIGN PATTERN (Structural Pattern)
+
+Definition:
+The Proxy Pattern provides a substitute or placeholder for another object to control access to it.
+
+Purpose:
+It adds an extra layer between the client and the real object, allowing additional functionality such as lazy loading, caching, security, and access control.
+
+Components:
+
+1. Subject – Common interface (Image).
+2. Real Subject – Actual object that performs the work (RealImage).
+3. Proxy – Controls access to the Real Subject (ProxyImage).
+
+How It Works:
+
+* Client interacts with the Proxy.
+* Proxy decides whether to create or access the Real Object.
+* Real Object is created only when needed.
+
+Advantages:
+• Improves performance through lazy loading.
+• Supports caching of expensive objects.
+• Provides security and access control.
+• Hides complexity from the client.
+
+Real-Life Example:
+A movie poster on Netflix acts as a proxy. The actual movie is loaded only when the user clicks Play.
+
+Example Output:
+First Call:
+Loading image from remote server...
+Displaying image
+
+Second Call:
+Displaying image
+
+(Note: Image is loaded only once and reused afterward.)
+
+Interview One-Liner:
+"Proxy Pattern controls access to an object and adds features like lazy loading, caching, security, and remote access without modifying the original object."

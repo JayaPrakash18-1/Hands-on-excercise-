@@ -1,0 +1,28 @@
+DECORATOR DESIGN PATTERN (Structural Pattern)
+
+Definition:
+The Decorator Pattern allows adding new functionality to an object dynamically at runtime without changing its original class. It is a flexible alternative to inheritance.
+
+Key Components:
+
+1. Component Interface – Defines the common interface (e.g., Text).
+2. Concrete Component – Original object implementation (e.g., PlainText).
+3. Decorator – Base class that wraps a component (e.g., TextDecorator).
+4. Concrete Decorators – Add extra behavior (e.g., BoldTextDecorator, ItalicTextDecorator).
+
+Example:
+PlainText → "Hello, world!"
+BoldTextDecorator → <b>Hello, world!</b>
+ItalicTextDecorator(BoldTextDecorator) → <i><b>Hello, world!</b></i>
+
+Advantages:
+• Adds functionality at runtime.
+• Follows Open-Closed Principle (open for extension, closed for modification).
+• More flexible than subclassing.
+• Multiple decorators can be combined in any order.
+
+Use Cases:
+• Text formatting (bold, italic, underline).
+• Java I/O Streams.
+• GUI components with additional features.
+• Logging, encryption, compression, etc.

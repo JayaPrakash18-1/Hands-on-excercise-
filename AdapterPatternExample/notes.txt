@@ -1,0 +1,49 @@
+ADAPTER DESIGN PATTERN (STRUCTURAL PATTERN)
+
+Definition:
+The Adapter Pattern allows two incompatible interfaces to work together by converting one interface into another that the client expects.
+
+Purpose:
+
+* Reuse existing classes without modifying them.
+* Act as a bridge between incompatible interfaces.
+* Improve flexibility and maintainability.
+
+Components:
+
+1. Target Interface
+
+   * Interface expected by the client.
+
+2. Adaptee
+
+   * Existing class with an incompatible interface.
+
+3. Adapter
+
+   * Converts requests from the Target interface to the Adaptee.
+
+4. Client
+
+   * Uses the Target interface without knowing about the Adaptee.
+
+Example:
+MediaPlayer (Target)
+↓
+MediaAdapter (Adapter)
+↓
+AdvancedMediaPlayer (Adaptee)
+↓
+VlcPlayer / Mp4Player
+
+Advantages:
+
+* Promotes code reusability.
+* Follows Open/Closed Principle.
+* Allows integration of legacy code with new systems.
+
+Real-Life Example:
+A USB-C to HDMI converter allows a laptop (USB-C) to connect to a projector (HDMI). The converter acts as an Adapter.
+
+Key Point:
+The client interacts only with the Target interface, while the Adapter handles communication with the incompatible Adaptee.

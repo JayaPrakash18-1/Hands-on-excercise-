@@ -1,0 +1,82 @@
+BUILDER DESIGN PATTERN
+
+Definition:
+Builder is a Creational Design Pattern used to create complex objects step by step.
+It separates object construction from object representation, allowing the same
+construction process to create different versions of an object.
+
+Why Use Builder Pattern?
+- Avoids constructors with too many parameters.
+- Handles optional fields easily.
+- Improves code readability.
+- Makes object creation flexible and maintainable.
+- Helps create immutable objects.
+
+Example Scenario:
+Consider a User profile with:
+- Username (required)
+- Email (optional)
+- Age (optional)
+- Profile Picture (optional)
+
+Without Builder:
+You may need multiple constructors for different parameter combinations.
+
+With Builder:
+You set only the required and desired optional fields.
+
+Structure:
+
+1. Product Class (User)
+   - Represents the final object.
+   - Has a private constructor.
+   - Receives values from the Builder.
+
+2. Builder Class (UserBuilder)
+   - Contains fields matching the Product.
+   - Provides methods to set optional values.
+   - Returns itself for method chaining.
+   - Has a build() method to create the object.
+
+Example Usage:
+
+User user = new UserBuilder("John")
+                .setEmail("john@example.com")
+                .setAge(30)
+                .setProfilePicture("profile.jpg")
+                .build();
+
+How It Works:
+1. Create Builder with required data.
+2. Set optional attributes using builder methods.
+3. Call build().
+4. Builder creates and returns the final object.
+
+Advantages:
+- Readable object creation.
+- Supports method chaining.
+- No need for many constructors.
+- Easy to add new optional fields.
+- Better maintainability.
+- Reduces constructor complexity.
+- Promotes immutability.
+
+Disadvantages:
+- Requires additional Builder class.
+- More code for simple objects.
+
+When to Use:
+- Object has many optional parameters.
+- Object creation is complex.
+- Constructor has too many arguments.
+- Need clean and readable object creation.
+
+Real-World Examples:
+- StringBuilder in Java
+- Lombok @Builder
+- HTTP Request Builders
+- Database Query Builders
+
+Key Interview Point:
+Builder Pattern creates complex objects step by step and is mainly used when an
+object has many optional parameters, avoiding telescoping constructors.
